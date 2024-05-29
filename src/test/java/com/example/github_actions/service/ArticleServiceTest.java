@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ExtendWith(MockitoExtension.class)
 public class ArticleServiceTest {
@@ -29,7 +30,7 @@ public class ArticleServiceTest {
             articles.add(new Article(String.format("Title: %d", i), String.format("Text: %d", i)));
         }
         Mockito.when(articleRepository.findAll()).thenReturn(articles);
-        Assertions.assertIterableEquals(articles, articleService.findAll());
+        Assertions.assertIterableEquals(articles, articleService.findAll().stream().map(Article::getText).collect(Collectors.toList()));
     }
 
     @Test

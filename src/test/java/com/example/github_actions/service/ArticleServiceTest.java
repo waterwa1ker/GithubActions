@@ -30,7 +30,7 @@ public class ArticleServiceTest {
             articles.add(new Article(String.format("Title: %d", i), String.format("Text: %d", i)));
         }
         Mockito.when(articleRepository.findAll()).thenReturn(articles);
-        Assertions.assertIterableEquals(articles, articleService.findAll().stream().map(Article::getText).collect(Collectors.toList()));
+        Assertions.assertIterableEquals(articles, articleService.findAll());
     }
 
     @Test

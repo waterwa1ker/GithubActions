@@ -1,0 +1,15 @@
+name: Github-ci-cd
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: mvn clean install

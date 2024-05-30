@@ -17,7 +17,13 @@
 		<java.version>17</java.version>
 		<mapper.version>3.0.0</mapper.version>
 		<jacoco.version>0.8.10</jacoco.version>
-		<minumum.code.coverage>0.0</minumum.code.coverage>
+		<minumum.code.coverage>0.8</minumum.code.coverage>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>./target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.language>java</sonar.language>
+		<sonar.login>admin</sonar.login>
+		<sonar.password>admin</sonar.password>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -54,6 +60,14 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>com/example/github_actions/model/**</exclude>
+						<exclude>com/example/github_actions/dto/**</exclude>
+						<exclude>com/example/github_actions/config/**</exclude>
+						<exclude>com/example/github_actions/GithubActionsApplication*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -77,10 +91,10 @@
 						<configuration>
 							<rules>
 								<rule>
-									<element>PACKAGE</element>
+									<element>BUNDLE</element>
 									<limits>
 										<limit>
-											<counter>LINE</counter>
+											<counter>COMPLEXITY</counter>
 											<value>COVEREDRATIO</value>
 											<minimum>${minumum.code.coverage}</minimum>
 										</limit>

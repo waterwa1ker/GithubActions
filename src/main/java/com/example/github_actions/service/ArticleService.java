@@ -23,4 +23,6 @@ public class ArticleService {
     }
 
     public Optional<Article> findById(int id) { return articleRepository.findById(id); }
+
+    public Optional<Article> findByText(String text) { return articleRepository.findByText(text); }
 }

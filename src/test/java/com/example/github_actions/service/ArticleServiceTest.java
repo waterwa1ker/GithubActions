@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @ExtendWith(MockitoExtension.class)
 public class ArticleServiceTest {
@@ -41,6 +40,15 @@ public class ArticleServiceTest {
         Optional<Article> optionalArticle = Optional.of(article);
         Mockito.when(articleRepository.findById(id)).thenReturn(optionalArticle);
         Assertions.assertEquals(articleService.findById(id), optionalArticle);
+    }
+
+    @Test
+    void findByText() {
+        String text = "text";
+        Article article = new Article("title", text);
+        Optional<Article> optionalArticle = Optional.of(article);
+        Mockito.when(articleRepository.findByText(text)).thenReturn(optionalArticle);
+        Assertions.assertEquals(optionalArticle, articleService.findByText(text));
     }
 
 }

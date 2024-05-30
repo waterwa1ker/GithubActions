@@ -2,6 +2,14 @@ version: '3'
 
 services:
 
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+    - 9000:9000
+    environment:
+      - SONAR_EQ_BOOTSTRAP_CHECKS_DISABLE=true
+      -
   db:
     image: library/postgres:15-alpine
     container_name: spring-db
@@ -20,8 +28,10 @@ services:
     container_name: 'spring-actions'
     depends_on:
       - db
+      - sonarqube
     ports:
       - 8080:8080
+
 volumes:
   db-data:
 

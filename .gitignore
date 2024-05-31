@@ -27,3 +27,4 @@ replay_pid*
 mvnw*
 target
 .idea
+.env

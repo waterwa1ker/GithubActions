@@ -2,6 +2,22 @@
 
 Проект для закрепления материала по CI/CD, полностью покрытый тестами с мониторингом.
 
+
+![Static Badge](https://img.shields.io/badge/java-17-green)
+![Static Badge](https://img.shields.io/badge/maven-3.8-green)
+![Static Badge](https://img.shields.io/badge/spring-3.2.6-green)
+![Static Badge](https://img.shields.io/badge/postgres-15-green)
+![Static Badge](https://img.shields.io/badge/jacoco-0.8-green)
+![Static Badge](https://img.shields.io/badge/openapi-3-green)
+![Static Badge](https://img.shields.io/badge/sonar-latest-green)
+![Static Badge](https://img.shields.io/badge/grafana-latest-green)
+![Static Badge](https://img.shields.io/badge/prometheus-latest-green)
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/waterwa1ker/GithubActions/github-ci-cd.yml)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/waterwa1ker/GithubActions)
+![Docker Image Size](https://img.shields.io/docker/image-size/adelibragimov/java-backend)
+
+
 ## Требования
 
 * Open JDK 17

@@ -29,6 +29,8 @@ docker compose up -d
 
 ![openapi-screen](./images/openapi-screen.png)
 
+Для отображения Swagger необходимо пройти по **localhost:8080/swagger-ui/index.html**.
+
 ## Тестирование
 
 Все тесты находятся в src/test. Тестирование с помощью JUnit и Mockito. Тестируются только **service** и **controller** пакеты.
@@ -43,7 +45,7 @@ mvn clean test
 
 ```bash
 mvn clean verify jacoco:report
-open target/site/index.html
+open target/site/jacoco/index.html
 ```
 
 ![jacoco-screen](./images/jacoco-screen.png)
@@ -64,4 +66,16 @@ SonarQube находится на localhost:9000. Необходимо авто�
 
 ![sonar-screen](./images/sonar-screen.png)
 
+## CI/CD
+
+Всю информацию о джобах можно найти в .github/workflows.
+
+При пуше в *develop* запускаются стандартные проверки джобы на build, test и coverage. Coverage должен составлять **не менее 80%**. Этот параметр можно поменять в pom.xml.
+
+При пуше в *release* ко всем джобам выше добавляется deploy на dockerhub. В Github Actions **необходимо настроить секреты** DOCKERHUB_USERNAME, DOCKERHUB_TOKEN для успешного деплоя.
+
 ## Мониторинг
+
+## Автор
+
+[Ибрагимов Адель](https://t.me/LifeLikeBoxOfChocolates)

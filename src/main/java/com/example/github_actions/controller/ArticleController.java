@@ -3,7 +3,7 @@ package com.example.github_actions.controller;
 import com.example.github_actions.dto.ArticleDTO;
 import com.example.github_actions.model.Article;
 import com.example.github_actions.service.ArticleService;
-import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,16 +19,20 @@ public class ArticleController {
 
     private final ArticleService articleService;
     private final ModelMapper modelMapper;
+    private final MeterRegistry meterRegistry;
 
     @Autowired
-    public ArticleController(ArticleService articleService, ModelMapper modelMapper) {
+    public ArticleController(ArticleService articleService, ModelMapper modelMapper, MeterRegistry meterRegistry) {
         this.articleService = articleService;
         this.modelMapper = modelMapper;
+        this.meterRegistry = meterRegistry;
     }
 
-    @Timed("findAllHttp")
     @GetMapping("/articles")
     public List<ArticleDTO> findAll() {
+        meterRegistry
+                .counter("find-all-counter", List.of())
+                .increment();
         return articleService.findAll()
                 .stream().map(this::fromArticle)
                 .collect(Collectors.toList());

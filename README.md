@@ -13,6 +13,7 @@
 ![Static Badge](https://img.shields.io/badge/grafana-latest-green)
 ![Static Badge](https://img.shields.io/badge/prometheus-latest-green)
 
+
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/waterwa1ker/GithubActions/github-ci-cd.yml)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/waterwa1ker/GithubActions)
 ![Docker Image Size](https://img.shields.io/docker/image-size/adelibragimov/java-backend)
@@ -93,6 +94,33 @@ SonarQube находится на localhost:9000. Необходимо авто�
 При пуше в *release* ко всем джобам выше добавляется deploy на dockerhub. В Github Actions **необходимо настроить секреты** DOCKERHUB_USERNAME, DOCKERHUB_TOKEN для успешного деплоя.
 
 ## Мониторинг
+
+Для мониторинга используются **Victoria Metrics, Prometheus & Grafana**.
+
+Для начала необходимо установить [Grafana Server](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.101.0) и [Victoria Metrics](https://grafana.com/grafana/download).
+
+### Запуск Victoria Metrics:
+
+Необходимо запустить Victoria Metrics с конфигом, который находится в victoriametrics/scrape.yml:
+
+```bash
+./victoria-metrics-prod -promscrape.config={PATH_TO_PROJECT}/victoriametrics/scrape.yml
+```
+Victoria Metrics откроется на порту 8428.
+
+### Запуск Grafana Server:
+
+```bash
+./grafana-server
+```
+
+Grafana откроется на 3000 порту. В разделе "Datasources" необходимо добавить Prometheus, в разделе url указать **http://localhost:8428** (то есть до Victoria Metrics). Далее можно импортировать различные дашборды, для удобства они есть в моем репозитории /grafana/*.json.
+
+![grafana-jvm-micrometer](./images/grafana-jvm-micrometer.png)
+
+Так же можно написать собственные панели для дашборда:
+
+![grafana-our-panel](./images/grafana-our-panel.png)
 
 ## Автор
 

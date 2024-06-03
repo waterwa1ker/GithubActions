@@ -16,6 +16,8 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/waterwa1ker/GithubActions/github-ci-cd.yml)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/waterwa1ker/GithubActions)
 ![Docker Image Size](https://img.shields.io/docker/image-size/adelibragimov/java-backend)
+![GitHub License](https://img.shields.io/github/license/waterwa1ker/GithubActions)
+
 
 
 ## Требования
